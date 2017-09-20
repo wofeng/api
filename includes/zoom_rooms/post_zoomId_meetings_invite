@@ -1,0 +1,77 @@
+<h2 id="invite-contacts">Invite contacts</h2>
+
+<p>Invite a contact or contacts from zoom room client</p>
+
+<blockquote>
+<p>Definition</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>POST https://api.zoom.us/v2/rooms/<span class="o">{</span>roomId<span class="o">}</span>/meetings
+</code></pre>
+<blockquote>
+<p>Example Request: Invite a contact</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.zoom.us/v2/rooms/<span class="o">{</span>roomId<span class="o">}</span>/meetings <span class="se">\</span>
+  -d <span class="s1">'{
+    "jsonrpc": "2.0",
+    "method": "invite",
+    "params": {
+        "callee": "kYAJ5yMfTCe0npL2_w3agw"
+    }
+}'</span>
+</code></pre>
+<blockquote>
+<p>Example Request: Invite contacts</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code><span class="gp">$ </span>curl https://api.zoom.us/v2/rooms/<span class="o">{</span>roomId<span class="o">}</span>/meetings <span class="se">\</span>
+  -d <span class="s1">'{
+    "jsonrpc": "2.0",
+    "method": "invite",
+    "params": {
+        "callee": ["kYAJ5yMfTCe0npL2_w3agw","jAXKRO6yRZWkdkZxbUuI_Q"]
+    }
+}'</span>
+</code></pre>
+<blockquote>
+<p>Example Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>200 OK
+</code></pre><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"jsonrpc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2.0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"room_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"63UtYMhSQZaBRPCNRXrD8A"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"send_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-09-15T01:26:05Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"49cf01a4-517e-4a49-b4d6-07237c38b749"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th>Path Arguments</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>roomId <strong>required</strong></td>
+<td>The id of zoom room</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>Body Arguments</th>
+<th>&nbsp;</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>jsonrpc</td>
+<td>A String specifying the version of the JSON-RPC protocol.</td>
+</tr>
+<tr>
+<td>method <strong>required</strong></td>
+<td>The name of inviting contacts method to be invoked.</td>
+</tr>
+<tr>
+<td>params.callee <strong>required</strong></td>
+<td>Callee&rsquo;s user id or the list of callees&rsquo; user ids,<br/>the maximum size of the callee list is <strong style="color: red">10</strong> items.</td>
+</tr>
+</tbody></table>
